@@ -1,34 +1,106 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather Forecast Application Development in JavaScript</title>
     <link rel="stylesheet" href="./output.css">
-    
+
 </head>
+
 <body class="bg-blue-200">
-    
-    <nav  class="bg-blue-400">
-        <div >
-        <h1 class=" text-white text-center py-3 font-bold text-2xl">Weather Dashboard</h1>
-    </div>
+
+    <nav class="bg-blue-400">
+        <div>
+            <h1 class=" text-white text-center py-3 font-bold text-2xl">Weather Dashboard</h1>
+        </div>
     </nav>
-<main class="flex">
-    <div id="left" class="w-3/12 h-full flex bg-red-800"> <form  >
-        <label for="" class=" mx-10 " >Enter a City Name</label>
-        <input type="text "  class="w-9/12 mx-10 my-2" placeholder="E.g New york London Tokyo">
-        <button class="bg-blue-500 w-9/12 ">Search</button>
-        <hr
-        class="border-t-[2px] border-solid border-black-600 h-1 text-center overflow-visible 
-        after:content-['or'] after:relative after:top-[-14px] after: after:text-black-600 after:px-1"
-    />
-    </form>
-   
-</div>
-    <div id="right">
-        <div id="currentwether" class="bg-blue-400 my-5" >sarvesh</div>
-    </div>
-</main>
+    <main class="flex my-4">
+        <div id="left" class="w-3/12 h-full flex">
+            <form>
+                <label for="" class=" mx-10 font-bold ">Enter a City Name</label>
+                <input type="text " id="inputcity" class="w-4/5 mx-10 my-2   rounded-sm"
+                    placeholder="E.g New york London Tokyo">
+                <button id="btn" class="bg-blue-500 w-4/5 mx-10 my-1  text-white rounded-sm">Search</button>
+                <h2 class=" w-4/5 mx-10 my-2 border-t-[] border-solid border-black-800 h-1 text-center overflow-visible 
+        after:content-['or'] after:relative after:top-[-14px] after: bg-gray-400 after:text-black after:px-1">
+                    </h4>
+                    <button class="bg-gray-600 w-4/5 mx-10 my-1 text-white rounded-sm">use current Location</button>
+
+            </form>
+
+        </div>
+        <div id="right" class=" w-9/12 ">
+            <div id="currentwether" class="bg-blue-400 mr-5 flex rounded-4xl">
+                <div id="content" class=" w-4/5  ">
+                    <h1 class="text-5xl font-bold text-white mx-5 my-2" id="City">London(<span
+                            id="date">23/09/2024</span> )</h1>
+                    <h2 class="text-3xl  text-white mx-5 font-light ">Temperature: <span id="temp">14</span></h2>
+                    <h2 class="text-3xl  text-white mx-5 my-1 font-light">Wind: <span id="wind">15</span></h2>
+                    <h2 class="text-3xl  text-white mx-5 my-1 font-light">Humidity: <span id="Humidity">50</span></h2>
+                </div>
+                <div id="cloud"> <img id="icon" src="https://openweathermap.org/img/wn/10d@4x.png" width="100px"
+                        height="100px">
+                    <p class="text-center text-white font-bold " id="rain">Light Rain</p>
+                </div>
+
+
+            </div>
+            <div id="forcastDay">
+                <h1 class="font-bold text-2xl">5-Day Forecast </h1>
+
+                <ul id="wether-card" class="flex  gap-5 my-5">
+                    <li id="card "
+                        class="border-s-black mx-5 bg-gray-600 text-white text-center border-red-600 rounded-2xl ">
+                        <h2>10/10/2024</h2>
+                        <img id="icon" src="https://openweathermap.org/img/wn/10d@4x.png" width="100px" height="100px">
+                        <h4 id="temp">Temp:15</h4>
+                        <h4 id="humidity">Humidity: 50</h4>
+                        <h4 id="wind">wind:  </h4>
+
+                    </li>
+                    <li id="card"
+                        class=" mx-5 bg-gray-600 text-white text-center shadow-sm border border-red-500 rounded-lg w-56">
+                        <h2>10/10/2024</h2>
+                        <img id="icon" src="https://openweathermap.org/img/wn/10d@4x.png" width="100px" height="100px">
+                        <h4>Temp: <span id="temp">14</span>°C</h4>
+                        <h4>Humidity: <span id="humidity">50</span>%</h4>
+                        <h4>wind: <span id="wind">15</span>km/h</h4>
+
+                    </li>
+                    <li id="card" class="border-s-black mx-5 bg-gray-600 text-white text-center ">
+                        <h2 id="date">10/10/2024</h2>
+                        <img id="icon" src="https://openweathermap.org/img/wn/10d@4x.png" width="100px" height="100px">
+                        <h4>Temp: <span id="temp">14</span>°C</h4>
+                        <h4>Humidity: <span id="humidity">50</span>%</h4>
+                        <h4>wind: <span id="wind">15</span>km/h</h4>
+
+                    </li>
+                    <li id="card" class="border-s-black mx-5 bg-gray-600 text-white text-center border border-red-500">
+                        <h2>10/10/2024</h2>
+                        <img id="icon" src="https://openweathermap.org/img/wn/10d@4x.png" width="100px" height="100px">
+                        <h4>Temp: <span id="temp">14</span>°C</h4>
+                        <h4>Humidity: <span id="humidity">50</span>%</h4>
+                        <h4>wind: <span id="wind">15</span>km/h</h4>
+
+                    </li>
+                    <li id="card" class="border-s-black mx-5 bg-gray-600 text-white text-center">
+                        <h2>10/10/2024</h2>
+                        <img id="icon" src="https://openweathermap.org/img/wn/10d@4x.png" width="100px" height="100px">
+                        <h4>Temp: <span id="temp">14</span>°C</h4>
+                        <h4>Humidity: <span id="humidity">50</span>%</h4>
+                        <h4>wind: <span id="wind">15</span>km/h</h4>
+
+                    </li>
+
+                </ul>
+
+            </div>
+        </div>
+    </main>
+    <script src="index.js"></script>
+
 </body>
+
 </html>
