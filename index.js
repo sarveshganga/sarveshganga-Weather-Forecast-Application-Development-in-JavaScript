@@ -1,13 +1,53 @@
 
-const Apikey="a2106db443122e90509b2567717c28aa"
+const Apikey="a2106db443122e90509b2567717c28aa";
 
 const cityinput=document.querySelector("#inputcity");
 const searchButton=document.querySelector("#btn");
+ const locationbtn=document.querySelector("#Locationbtn")
 const weathericon=document.querySelector("#icon");
  const weathercard=document.querySelector("#wether-card")
 
- 
-getforcasting
+ async function displayForeCast(lat, long) {
+  const ForeCast_API = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${long}&appid=${Apikey}`;
+  const data = await fetch(ForeCast_API);
+  const result = await data.json();
+  // filter the forecast
+  const uniqeForeCastDays = [];
+  const daysForecast = result.list.filter((forecast) => {
+    const forecastDate = new Date(forecast.dt_txt).getDate();
+    if (!uniqeForeCastDays.includes(forecastDate)) {
+      return uniqeForeCastDays.push(forecastDate);
+    }
+  });
+  console.log(daysForecast);
+
+  daysForecast.forEach((content, indx) => {
+    if (indx <= 3) {
+      weathercard.insertAdjacentHTML("afterbegin", forecast(content));
+    }
+  });
+}
+
+// forecast html element data
+function forecastcard(weatherItam) {
+  
+
+  return `<li id="card">
+                        <h2>(${weatherItam.dt_txt.split(" ")[0]})</h2>
+                        <img id="icon" src="https://openweathermap.org/img/wn/${weatherItam.weather[0].icon}4x.png" width="100px" height="100px">
+                        <h4 id="temp">Temp:${(weatherItam.temp -273.15).toFixed(2)}°C</h4>
+                        <h4 id="humidity">Humidity:${weatherItam.main.humidity}%</h4>
+                        <h4 id="wind">wind: ${weatherItam.wind.speed} km/h  </h4>
+
+                    </li>`;
+}
+    
+    
+   
+    
+  
+    
+
 
 
 
@@ -17,8 +57,11 @@ getforcasting
      const response=await fetch(apiurl);
      var data=await response.json();
      console.log(data);
-     const {name,lat,lon}=data;
-getforcasting(name,lat,lon);
+
+    const {name,lat,lon}=data;
+    displayForeCast(name,lat,lon);
+
+
      document.querySelector("#City").innerHTML=data.name;
      document.querySelector("#Humidity").innerHTML=data.main.humidity +"%";
      document.querySelector("#temp").innerHTML=data.main.temp+"°C";
@@ -49,6 +92,19 @@ searchButton.addEventListener("click", (e) => {
 
   
 });
+
+
+locationbtn.addEventListener("click",getuser=(e)=>{
+  e.preventDefault();
+
+  navigator.geolocation.getCurrentPosition(position=>{
+    console.log(position)
+  },
+  error=>{
+    console.log(error)
+  }
+)
+})
 
 
 
